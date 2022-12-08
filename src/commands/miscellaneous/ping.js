@@ -1,5 +1,8 @@
 module.exports = {
   description: 'Shows client + websocket ping 🏓',
+  // devOnly: boolean,
+  // testOnly: boolean,
+  // options: object (),
 
   callback: (client, interaction) => {
     interaction.deferReply().then(() => {
