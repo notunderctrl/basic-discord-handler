@@ -7,13 +7,13 @@ module.exports = async ({ client }) => {
   for (const eventFolder of eventFolders) {
     const eventFiles = getAllFiles(eventFolder);
 
-    for (const eventFile of eventFiles) {
-      const eventFunction = require(eventFile);
-      const eventName = eventFolder.replace(/\\/g, '/').split('/').pop();
+    const eventName = eventFolder.replace(/\\/g, '/').split('/').pop();
 
-      client.on(eventName, async (args) => {
+    client.on(eventName, async (args) => {
+      for (const eventFile of eventFiles) {
+        const eventFunction = require(eventFile);
         await eventFunction(client, args);
-      });
-    }
+      }
+    });
   }
 };
